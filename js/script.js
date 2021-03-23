@@ -156,17 +156,7 @@ const newIcons = icons.map((item, i) => {
 });
 
 //4. Riutilizziamo il for Each per stampare il nuovo array
-newIcons.forEach((item) => {
-
-  const {name, prefix, family, category, color} = item
-  const box = `
-  <div>
-    <i class="${family} ${prefix}${name}" style = color:${color}></i>
-    <div class="title">${name}</div>
-  </div>`
-
-  $(".icons").append(box);
-});
+printIcons(newIcons);
 
 // Milestone 3
 // Creiamo una select con i tipi di icone e usiamola per filtrare le icone
@@ -188,11 +178,18 @@ $("#type").change( function() {
     iconFiltrate = newIcons;
   }
 
-  //Svuotiamo il div ad ogni change
+  //Utilizziamo la funzione per stampare i div filtrati
+  printIcons(iconFiltrate);
+
+});
+
+//Funzioni
+
+function printIcons(icons) {
+  
   $(".icons").html("");
 
-  //Filtriamo i vari box a seconda della loro categoria
-  iconFiltrate.forEach((item) => {
+  icons.forEach((item) => {
     const {name, prefix, family, category, color} = item
     const box = `
     <div>
@@ -202,4 +199,4 @@ $("#type").change( function() {
 
     $(".icons").append(box);
   });
-});
+}
