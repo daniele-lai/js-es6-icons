@@ -119,6 +119,7 @@ const icons = [
 ];
 // Milestone 1
 // Mostriamo in pagina le icone
+
 // icons.forEach((item) => {
 //
 //   const {name, prefix, family, category} = item
@@ -130,8 +131,10 @@ const icons = [
 //
 //   $(".icons").append(box);
 // });
+
 // Milestone 2
 // Coloriamo le icone per tipo
+
 //1. Mi riprendo le categorie ma per assegnarle ad un array
 const categorie = [];
 
@@ -158,9 +161,45 @@ newIcons.forEach((item) => {
   const {name, prefix, family, category, color} = item
   const box = `
   <div>
-  <i class="${family} ${prefix}${name}" style = color:${color}></i>
-  <div class="title">${name}</div>
+    <i class="${family} ${prefix}${name}" style = color:${color}></i>
+    <div class="title">${name}</div>
   </div>`
 
   $(".icons").append(box);
+});
+
+// Milestone 3
+// Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+
+//1. Aggiungiamo gli option alla select
+for (var i = 0; i < categorie.length; i++) {
+  $("#type").append(`<option value="${categorie[i]}">${categorie[i]}</option>`);
+}
+
+//2. Evento change della select
+$("#type").change( function() {
+  const sceltaSelect = $(this).val();
+  let iconFiltrate = newIcons.filter((item) => {
+    return item.category == sceltaSelect;
+  });
+
+  //If nel caso si scegliesse "All"
+  if (iconFiltrate.length == 0) {
+    iconFiltrate = newIcons;
+  }
+
+  //Svuotiamo il div ad ogni change
+  $(".icons").html("");
+
+  //Filtriamo i vari box a seconda della loro categoria
+  iconFiltrate.forEach((item) => {
+    const {name, prefix, family, category, color} = item
+    const box = `
+    <div>
+      <i class="${family} ${prefix}${name}" style = color:${color}></i>
+      <div class="title">${name}</div>
+    </div>`
+
+    $(".icons").append(box);
+  });
 });
