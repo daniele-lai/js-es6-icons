@@ -117,24 +117,9 @@ const icons = [
     category: "animal"
   },
 ];
-// Milestone 1
-// Mostriamo in pagina le icone
-
-// icons.forEach((item) => {
-//
-//   const {name, prefix, family, category} = item
-//   const box = `
-//   <div>
-//   <i class="${family} ${prefix}${name}"></i>
-//   <div class="title">${name}</div>
-//   </div>`
-//
-//   $(".icons").append(box);
-// });
 
 // Milestone 2
 // Coloriamo le icone per tipo
-
 //1. Mi riprendo le categorie ma per assegnarle ad un array
 const categorie = [];
 
@@ -183,10 +168,9 @@ $("#type").change( function() {
 
 });
 
-//Funzioni
-
+//Funzione
 function printIcons(icons) {
-  
+
   $(".icons").html("");
 
   icons.forEach((item) => {
