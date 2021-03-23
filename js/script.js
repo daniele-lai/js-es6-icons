@@ -119,13 +119,46 @@ const icons = [
 ];
 // Milestone 1
 // Mostriamo in pagina le icone
-icons.forEach((item) => {
+// icons.forEach((item) => {
+//
+//   const {name, prefix, family, category} = item
+//   const box = `
+//   <div>
+//   <i class="${family} ${prefix}${name}"></i>
+//   <div class="title">${name}</div>
+//   </div>`
+//
+//   $(".icons").append(box);
+// });
+// Milestone 2
+// Coloriamo le icone per tipo
+//1. Mi riprendo le categorie ma per assegnarle ad un array
+const categorie = [];
 
-  const {name, prefix, family, category} = item
-  
+icons.forEach((item) => {
+  if (categorie.includes(item.category) == false) {
+    categorie.push(item.category);
+  }
+});
+
+//2. Creo un array di Colori
+const colori = ["tomato","lightgreen","lightblue"];
+
+//3. Assegnamo la proprietà colori agli oggetti
+const newIcons = icons.map((item, i) => {
+  const categorieIndex = categorie.indexOf(item.category);
+  const colorIcon = colori[categorieIndex];
+  item.color = colorIcon;
+  return item;
+});
+
+//4. Riutilizziamo il for Each per stampare il nuovo array
+newIcons.forEach((item) => {
+
+  const {name, prefix, family, category, color} = item
   const box = `
   <div>
-  <i class="${family} ${prefix}${name}"></i>
+  <i class="${family} ${prefix}${name}" style = color:${color}></i>
   <div class="title">${name}</div>
   </div>`
 
